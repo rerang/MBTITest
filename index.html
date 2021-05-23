@@ -3,7 +3,14 @@
     <head>
         <meta charset="UTF-8">
         <meta name = "viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>고양이 테스트: 내가 고양이가 된다면?</title>
+        <meta name="description" content="MBTI를 기반으로 성향을 구분하여, 본인과 닮은 고양이를 추천해주는 테스트입니다.">
+        <meta property="og:type" content="website"> 
+        <meta property="og:title" content="고양이 테스트: 내가 고양이가 된다면?">
+        <meta property="og:description" content="MBTI를 기반으로 성향을 구분하여, 본인과 닮은 고양이를 추천해주는 테스트입니다.">
+        <meta property="og:image" content="images/main">
+        <meta property="og:url" content="https://whatifibecamecat.netlify.app/">
+
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
@@ -25,10 +32,23 @@
             <button type="button" id="B" class="btn btn-primary btn-lg mt-5"></button>
         </article>
         <article class="result">
+            <h1 class="mt-5 text-center">내가 고양이가 된다면?</h1>
             <img class="rounded mt-5" id="pic" src="images/main.png" alt="result">
             <h2 class="text-center mt-5" id="name">고양이 이름</h2>
             <h4 class="text-center mt-5" id="explain">설명</h4>
+            <h4 class="text-center mt-5" id="explainMore">더설명</h4>
+            <!-- share -->
+            <!-- Go to www.addthis.com/dashboard to customize your tools -->
+            <div class="share addthis_inline_share_toolbox"></div>
+        </article> 
+        <!-- ad -->
+        <article class="kakao_ad mt-5">
+            <ins class="kakao_ad_area" style = "display:none;" data-ad-unit = "DAN-oJ3Ub6bhv5hIkqvC" data-ad-width = "320" 
+                data-ad-height  = "100"></ins>
+            <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
         </article>
+        
+
         <input type="hidden" id="EI" value="0"> 
         <input type="hidden" id="SN" value="0">
         <input type="hidden" id="TF" value="0">
@@ -39,36 +59,36 @@
         <script>
             var num=1;
             var q = {
-                1 : { "title" : "문제 1번: 사람들이 자꾸 쳐다보는데? 왜지감자,,,?", "type" : "EI", "A" : "오늘 나 좀 멋져보이나? 잘생긴건 알아가지고~후후", "B" : "뭐지,, 얼굴에 뭐 묻었나? 왜 자꾸 쳐다보는거야;;" },
-                2 : { "title" : "문제 2번: 친구와 약속을 잡으려 한다. 같이 밥을 먹으려하는데, 뭐라고 할까?", "type" : "JP", "A" : "금요일에 시간돼? 그럼 18시에 고기고기하우스에서 보자!", "B" : "금요일 점심때 회사앞에서 먹자. 그날 보고 가게는 정하는걸로!" },
-                3 : { "title" : "문제 3번: 바퀴벌레가 나왔다. 이럴 때 나는.....", "type" : "EI", "A" : "야! 너는 왼쪽에서 덮쳐! 나는 오른쪽에서 간다!!", "B" : "아,, 다 비켜봐 그냥 혼자 잡을게!" },
-                4 : { "title" : "문제 4번: 절절한 연애를 시작했다. 나의 그 사람은.....", "type" : "SN", "A" : "배경, 외모, 내면 모든게 잘맞는 사람이야.", "B" : "함께라면 모든 곤경을 헤쳐나갈 수 있을 것 같은 사람이야." },
-                5 : { "title" : "문제 5번: 새로운 이론을 배웠다. 이 이론에 매력을 느낀 이유는..... ", "type" : "SN", "A" : "널리 이롭게 쓰일 것 같고, 실리가 있어서!", "B" : "취지가 의미있고, 내용이 흥미로워서!" },
-                6 : { "title" : "문제 6번: 오늘따라 친구의 표정이 좋지 않군. 이럴때 나는.....", "type" : "TF", "A" : "평소와 다른 어떤 일이 있었던 것이군. 한 번 물어봐야겠어!", "B" : "친구의 표정이 우울해보여,, 위로해줘야겠어!" },
-                7 : { "title" : "문제 7번: 어느 밤, 갑자기 나 지금 센치해~ 왜지감자,,,?", "type" : "SN", "A" : "보름달을 보니, 과거 어느 날이 생각이 나는군. 추억이 새록새록 떠오르는 밤이야.", "B" : "달빛이 처연해 보이는군. 마치 나같아... 아니, 나를 위로해주는건가?!!?!" },
-                8 : { "title" : "문제 8번: 친한친구가 실연의 아픔으로 삭발을 했다고 한다. 이 때, 나의 반응은.....", "type" : "TF", "A" : "머리카락 다 미는거 편해?", "B" : "어떡해. 많이 힘들구나,,," },
-                9 : { "title" : "문제 9번: 지갑을 잃어버려서 걱정하고 있는데, 친구의 말이 도움이 됐다. 친구는 어떤 말을 해줬을까?", "type" : "TF", "A" : "카드 있으면 일단 정지시키고, 마지막으로 본 곳부터 가보자.", "B" : "괜찮아? 금방 찾을 수 있을거야. 나도 같이 찾아볼게." },
-                10 : { "title" : "문제 10번: 여행을 가기로 했다. 미리 준비해야 할 것은?", "type" : "JP", "A" : "일정 준비, 교통편, 숙소, 짐도 챙기고,,, 동선까지 봐야해! 할게 너무 많아!!", "B" : "잘 곳, 왕복 교통편 끝! 숙소까지 갈 수 있으면 된거지~ 다했다!" },
-                11 : { "title" : "문제 11번: 스트레스를 받으면 나는.....", "type" : "EI", "A" : "친구와 대화하며 스트레스를 날린다!", "B" : "쉬는게 제일! 굴러다니면서 힐링!" },
-                12 : { "title" : "문제 12번: 마라톤 중 얼마 남지 않았는데, 너무 힘이든다. 이 때에 드는 생각은?", "type" : "JP", "A" : "마침표를 찍어야만 해낸거야! 천천히라도 끝까지 하자!", "B" : "내 한계를 경험해본거야! 참가에 의의를 두고 다음에 또 참여하자!" }
+                1 : { "title" : "Q1. 사람들이 자꾸 쳐다보는데? 왜지감자...?", "type" : "EI", "A" : "잘생긴건 알아가지고~후후", "B" : "뭐지,, 얼굴에 뭐 묻었나?" },
+                2 : { "title" : "Q2. 친구랑 저녁 약속을 하려하는데, 뭐라고 할까?", "type" : "JP", "A" : "금요일 18시에 고기고기하우스에서 보자!", "B" : "금요일 저녁때 먹고 싶은걸로 먹자!" },
+                3 : { "title" : "Q3. 바퀴벌레가 나왔다. 이럴 때 나는...", "type" : "EI", "A" : "너는 왼쪽, 나는 오른쪽에서 덮치자!", "B" : "(파리채를 들고온다) 다 비켜봐 내가 잡을게!" },
+                4 : { "title" : "Q4. 절절한 연애를 시작했다. 나의 그 사람은...", "type" : "SN", "A" : "배경, 외모, 내면 다 잘맞는 사람!", "B" : "모든 곤경을 같이 이겨낼 수 있을 것 같은 사람!" },
+                5 : { "title" : "Q5. 매력적인 새로운 것을 배우게 되었는데... ", "type" : "SN", "A" : "널리 이롭게 쓰일 것 같고, 실리가 있어!", "B" : "취지가 의미있고, 내용이 흥미로워!" },
+                6 : { "title" : "Q6. 친구의 표정이 좋지 않은데...", "type" : "TF", "A" : "평소와 다른 어떤 일이 있었던 것이군. 한 번 물어봐야겠어!", "B" : "친구의 표정이 우울해보여,, 위로해줘야겠어!" },
+                7 : { "title" : "Q7. 어느 밤, 갑자기 나 지금 센치해~ 왜지감자...?", "type" : "SN", "A" : "옛날이 생각이 나는군. 추억이 새록새록 떠오르는군.", "B" : "달빛이 나를 위로해주는것 같아,,," },
+                8 : { "title" : "Q8. 친구가 실연의 아픔으로 삭발을 했다고 한다.", "type" : "TF", "A" : "머리카락 다 미는거 편하려나?", "B" : "이별로 많이 힘들구나,,," },
+                9 : { "title" : "Q9. 지인이 지갑을 잃어버렸다. 이때 나는...", "type" : "TF", "A" : "카드 있으면 일단 정지시키고, 마지막으로 본 곳부터 가보자.", "B" : "괜찮아? 금방 찾을 수 있을거야. 나도 같이 찾아볼게." },
+                10 : { "title" : "Q10. 여행 가기전 나는...?", "type" : "JP", "A" : "교통편, 숙소, 짐, 동선까지!!! 모든게 완벽해야해!", "B" : "잘 곳, 왕복 교통편만! 나머지는 그때 보고~ 끝!" },
+                11 : { "title" : "Q11. 스트레스를 받으면 나는...", "type" : "EI", "A" : "친구와 대화하며 스트레스 빠세!!", "B" : "쉬는게 제일! 굴러다니면서 힐링!" },
+                12 : { "title" : "Q12. 마라톤을 하는데, 얼마남지 않은 결승선!! 그런데 너무 힘들다ㅠ", "type" : "JP", "A" : "마침표를 찍어야만 해! 천천히라도 끝까지 하자!", "B" : "참가에 의의를 두고, 다음에 또 참여하자!" }
             }
             var result = {
-                "ISTJ" : { "name" : "까칠냥", "explain" : "가까이 오지 마! 코로나 시국에 적합한 인재 냥냥!!", "img" : "images/ISTJ.png" },
-                "ISFJ" : { "name" : "울지마라냥", "explain" : "눈치 max!! 집사~ 너 슬프냥? 특별히 만지게 해주지~!", "img" : "images/ISFJ.png" },
-                "ISTP" : { "name" : "잘꾸다냥", "explain" : "귀찮아,, 난 잘거다냥~ 소심하긴하지만, 귀찮은거엔 주장이 확실한 냥냥!", "img" : "images/ISTP.png" },
-                "ISFP" : { "name" : "날보라냥", "explain" : "멈춰!! 집사는 나만을 봐야한다냥~!", "img" : "images/ISFP.png" },
-                "ENFP" : { "name" : "덜렁특이냥", "explain" : "비싼 집 사줬더니,, 왜 상자에 들어가는거야ㅠㅠ~", "img" : "images/ENFP.png" },
-                "ENTP" : { "name" : "쿨냥", "explain" : "후후후,, 재밌군,,, 새로사면 될 것이 아니냥!! 집사 아주 쿨하지 못해~", "img" : "images/ENTP.png" },
-                "ENFJ" : { "name" : "개냥", "explain" : "우웅~? 냥이 츄르 꿈꿔뚀~ 애교뿜뿜 멍뭉미냥!", "img" : "images/ENFJ.png" },
-                "ENTJ" : { "name" : "간식 탐지냥", "explain" : "아니,, 살살 열었는데, 어떻게 또 알고 오는지ㅠㅠ", "img" : "images/ENTJ.png" },
-                "ESTP" : { "name" : "나이트 러너냥", "explain" : "밤이되면, 여러분의 뱃살은 점프대가 될 것 이다냥!!", "img" : "images/ESTP.png" },
-                "ESFP" : { "name" : "인플루언서냥", "explain" : "나의 엘레강스한 털을 봐라냥~ 후후,, 봤으면 난 간닷~", "img" : "images/ESFP.png" },
-                "ESTJ" : { "name" : "라떼는 마리냥", "explain" : "얘, 봄벌레가 맛있단다~ 넌 이런거 안먹어봤지? 라떼는 마리냥~", "img" : "images/ESTJ.png" },
-                "ESFJ" : { "name" : "츄르애교냥", "explain" : "츄릅!! 그거 내꺼냥?!??!!! 나 준다니까 내가 한 번 굴러준다냥~", "img" : "images/ESFJ.png" },
-                "INFJ" : { "name" : "고민이다냥", "explain" : "왜 자꾸 우는거야~!!! 대화하자는 건가? 아니얏 사실 고민이 너무 많단 말이다냥", "img" : "images/INFJ.png" },
-                "INTJ" : { "name" : "고독하구냥", "explain" : "아니,, 뭐,, 내가 한건 아니고,,, 거 참 고독하구만 (사실 혼자가 최고)", "img" : "images/INTJ.png" },
-                "INFP" : { "name" : "사차원냥", "explain" : "나도 쟤처럼 자유를 가질 수 있을까,,,? 그만그만!! 친구들이 이상하게 본다구~", "img" : "images/INFP.png" },
-                "INTP" : { "name" : "명탐정냥", "explain" : "약간씩 움직이는 저 다리, 적당한 속도감, 적당히 뜯을만한 소재,,, 범인은 너다냥!!!", "img" : "images/INTP.png" }
+                "ISTJ" : { "name" : "까칠냥", "explain" : "가까이 오지 마! 코로나 시국에 적합한 인재 냥냥!!<br>", "img" : "images/ISTJ.png", "explainMore":"ㅇㅇㅇㅇㅇㅇ" },
+                "ISFJ" : { "name" : "울지마라냥", "explain" : "눈치 max!! 집사~ 너 슬프냥? 특별히 만지게 해주지~!<br>", "img" : "images/ISFJ.png", "explainMore":"ㅇㅇㅇㅇㅇㅇ"  },
+                "ISTP" : { "name" : "잘꾸다냥", "explain" : "귀찮아,, 난 잘거다냥~<br>소심하긴하지만, 귀찮은거엔 주장이 확실한 냥냥!<br>", "img" : "images/ISTP.png", "explainMore":"ㅇㅇㅇㅇㅇㅇ"  },
+                "ISFP" : { "name" : "날보라냥", "explain" : "멈춰!! 집사는 나만을 봐야한다냥~!<br>", "img" : "images/ISFP.png", "explainMore":"ㅇㅇㅇㅇㅇㅇ"  },
+                    "ENFP" : { "name" : "덜렁특이냥", "explain" : "비싼 집 사줬더니,, 왜 상자에 들어가는거야ㅠㅠ~<br>", "img" : "images/ENFP.png", "explainMore":"ㅇㅇㅇㅇㅇㅇ" },
+                "ENTP" : { "name" : "쿨냥", "explain" : "후후후,, 재밌군,,, 새로사면 될 것이 아니냥!!<br>집사 아주 쿨하지 못해~<br>", "img" : "images/ENTP.png", "explainMore":"ㅇㅇㅇㅇㅇㅇ"  },
+                "ENFJ" : { "name" : "개냥", "explain" : "우웅~? 냥이 츄르 꿈꿔뚀~ <br>애교뿜뿜 멍뭉미냥!<br>", "img" : "images/ENFJ.png", "explainMore":"ㅇㅇㅇㅇㅇㅇ"  },
+                "ENTJ" : { "name" : "간식 탐지냥", "explain" : "아니,, 살살 열었는데, 어떻게 또 알고 오는지ㅠㅠ<br>", "img" : "images/ENTJ.png", "explainMore":"ㅇㅇㅇㅇㅇㅇ"  },
+                "ESTP" : { "name" : "나이트 러너냥", "explain" : "밤이되면, 집사의 뱃살은 점프대가 될 것 이다냥!!<br>", "img" : "images/ESTP.png", "explainMore":"ㅇㅇㅇㅇㅇㅇ"  },
+                "ESFP" : { "name" : "인플루언서냥", "explain" : "나의 엘레강스한 털을 봐라냥~ 후후,, 봤으면 난 간닷~<br>", "img" : "images/ESFP.png", "explainMore":"ㅇㅇㅇㅇㅇㅇ"  },
+                "ESTJ" : { "name" : "라떼는 마리냥", "explain" : "얘, 봄벌레가 맛있단다~ 넌 이런거 안먹어봤지?<br>라떼는 마리냥~<br>", "img" : "images/ESTJ.png", "explainMore":"ㅇㅇㅇㅇㅇㅇ"  },
+                "ESFJ" : { "name" : "츄르애교냥", "explain" : "츄릅!! 그거 내꺼냥?!??!!!<br>나 준다니까 내가 한 번 굴러준다냥~<br>", "img" : "images/ESFJ.png", "explainMore":"ㅇㅇㅇㅇㅇㅇ"  },
+                "INFJ" : { "name" : "고민이다냥", "explain" : "왜 자꾸 우는거야~!!! 대화하자는 건가?<br>아니얏 사실 고민이 너무 많단 말이다냥<br>", "img" : "images/INFJ.png", "explainMore":"ㅇㅇㅇㅇㅇㅇ"  },
+                "INTJ" : { "name" : "고독하구냥", "explain" : "아니,, 뭐,, 내가 한건 아니고,,,<br>거 참 고독하구만 (사실 혼자가 최고)<br>", "img" : "images/INTJ.png", "explainMore":"ㅇㅇㅇㅇㅇㅇ"  },
+                "INFP" : { "name" : "사차원냥", "explain" : "나도 쟤처럼 자유를 가질 수 있을까,,,?<br>그만그만!! 친구들이 이상하게 본다구~<br>", "img" : "images/INFP.png", "explainMore":"ㅇㅇㅇㅇㅇㅇ"  },
+                "INTP" : { "name" : "명탐정냥", "explain" : "약간씩 움직이는 저 다리, 적당한 속도감, 적당히 뜯을만한 소재,,,<br>범인은 너다냥!!!<br>", "img" : "images/INTP.png", "explainMore":"ㅇㅇㅇㅇㅇㅇ"  }
             }
             function start(){
                 $(".start").hide();
@@ -87,16 +107,19 @@
             function next(){
                 if(num==13){
                     $(".question").hide();
-                    $(".result").show();
+
                     var mbti = "";
                     ($("#EI").val() < 2) ? mbti += "I" : mbti += "E";
                     ($("#SN").val() < 2) ? mbti += "N" : mbti += "S";
                     ($("#TF").val() < 2) ? mbti += "F" : mbti += "T";
                     ($("#JP").val() < 2) ? mbti += "P" : mbti += "J";
                     alert(mbti);
+                                        
+                    $(".result").show();
                     $("#pic").attr('src', result[mbti]["img"]);
                     $("#name").html(result[mbti]["name"]);
                     $("#explain").html(result[mbti]["explain"]);
+                    $("#explainMore").html(result[mbti]["explainMore"]);
                 }
                 else{
                     $(".progress-bar").attr('style', 'width: calc(100/12*'+num+'%)');
@@ -108,5 +131,7 @@
                 }
             }
         </script>
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60a9ee5b97d34dd0"></script>
     </body>
 </html>
