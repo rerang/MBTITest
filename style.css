@@ -1,6 +1,10 @@
 body{
     font-family: 'Gamja Flower', cursive;
 }
+h1{
+    text-align:center;
+    border-bottom: 10px rgb(253, 180, 180) double;
+}
 .title{
     font-size: 100px;
 }
@@ -27,9 +31,29 @@ article{
     height: 300px;
     margin: 0 auto;
 }
-
-button{
+.progress-bar{
+    background: rgb(253, 180, 180);
+}
+.button{
     margin: 5%;
+    background-color: rgb(255, 203, 203);
+    color: black;
+    border: 2px rgb(255, 203, 203) solid;
+}
+.button:hover{
+    border: 2px rgb(253, 180, 180) solid;
+    background-color:rgb(253, 180, 180);
+}
+.button:focus{
+    border: 2px rgb(255, 203, 203) solid;
+    background-color: rgb(255, 203, 203);
+    color: black;
+}
+
+#explainMore{
+    padding: 20px;
+    line-height: 50px;
+    border: 3px rgb(253, 180, 180) dotted;
 }
 
 .share{
