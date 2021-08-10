@@ -83,6 +83,7 @@
                 11 : { "title" : "Q11. 스트레스를 받으면 나는...", "type" : "EI", "choiceA" : "<big><b>친구와 대화</big></b>하며 스트레스 빠세!!", "choiceB" : "<big><b>쉬는게 제일!</big></b> 굴러다니면서 힐링!" },
                 12 : { "title" : "Q12. 마라톤을 하는데, 얼마남지 않은 결승선!! 그런데 너무 힘들다ㅠ", "type" : "JP", "choiceA" : "마침표를 찍어야만 해! <big><b>천천히라도 끝까지</b></big> 하자!", "choiceB" : "<big><b>참가에 의의</b></big>를 두고, 다음에 또 참여하자!" }
             }
+            
             var resultGroup = {
                 "ISTJ" : { "name" : "까칠냥", "explain" : "가까이 오지 마! 코로나 시국에 적합한 인재 냥냥!!", "img" : "images/ISTJ.png", "explainMore":"현실적이고 철저해요.<br>까칠냥을 만지기 위해서는 먼저 대가가 필요하답니다!" },
                 "ISFJ" : { "name" : "울지마라냥", "explain" : "눈치 max!! 집사~ 너 슬프냥? 특별히 만지게 해주지~!", "img" : "images/ISFJ.png", "explainMore":"집사를 책임지고 있다는 생각을 하고 있어요! <br>정이 많고, 헌신적인 착한 냥냥이랍니다!"  },
@@ -101,10 +102,11 @@
                 "INFP" : { "name" : "사차원냥", "explain" : "나도 쟤처럼 자유를 가질 수 있을까...?<br>그만그만!! 친구들이 이상하게 <br>본다구~", "img" : "images/INFP.png", "explainMore":"마음이 따뜻하고, 이상적이에요. <br>해보고 싶은 것은 도전해본답니다~ <br>가끔 현실적이지 않은 생각을 실행하려 해서, 집사를 놀라게 해요!"  },
                 "INTP" : { "name" : "명탐정냥", "explain" : "약간씩 움직이는 저 다리, 적당한 속도감, 적당히 뜯을만한 소재,,,<br>범인은 너다냥!!!", "img" : "images/INTP.png", "explainMore":"조용하고, 분석적이에요. <br>가구 틈으로 들어가, 기회를 엳보며, <br>범인을 색출한답니다~"  }
             }
-            function startQuestion(){
+            
+            let startQuestion = ()=>{
                 $(".testStart").hide();
                 $(".question").show();
-                turnToNextPage();
+                turnToNextPage(questionNumber);
             }
             $("#choiceA").click(()=>{
                 var type = $("#type").val();
@@ -115,34 +117,45 @@
             $('#choiceB').click(()=>{
                 turnToNextPage();
             });
-            function turnToNextPage(){
-                if(questionNumber==13){
-                    $(".question").hide();
-
-                    var mbti = "";
-                    ($("#EI").val() < 2) ? mbti += "I" : mbti += "E";
-                    ($("#SN").val() < 2) ? mbti += "N" : mbti += "S";
-                    ($("#TF").val() < 2) ? mbti += "F" : mbti += "T";
-                    ($("#JP").val() < 2) ? mbti += "P" : mbti += "J";
-                                        
-                    $(".result").show();
-                    $("#pic").attr('src', resultGroup[mbti]["img"]);
-                    $("#name").html("<mark style=\"background-color: rgba(255, 203, 203, 0.8);\"><b>"+resultGroup[mbti]["name"]+"</b></mark>");
-                    $("#explain").html(resultGroup[mbti]["explain"]);
-                    $("#explainMore").html(resultGroup[mbti]["explainMore"]);
-                    $("#preImage").attr('content', "https://whatifibecamecat.netlify.app/"+resultGroup[mbti]["img"]);
+            let turnToNextPage = ()=>{
+                if(questionNumber==Object.keys(questionGroup).length+1){
+                    makeResult();
                 }
                 else{
-                    $("#progress_num").html(questionNumber+'/12');
-                    $(".progress-bar").attr('style', 'width: calc(100/12*'+questionNumber+'%)');
-                    $("#title").html(questionGroup[questionNumber]["title"]);
-                    $("#type").val(questionGroup[questionNumber]["type"]);
-                    $("#choiceA").html(questionGroup[questionNumber]["choiceA"]);
-                    $("#choiceB").html(questionGroup[questionNumber]["choiceB"]);
+                    paintNextQuestion();
                     questionNumber++;
                 }
             }
+            let paintNextQuestion = ()=>{
+                $("#progress_num").html(questionNumber+'/12');
+                $(".progress-bar").attr('style', 'width: calc(100/12*'+questionNumber+'%)');
+                $("#title").html(questionGroup[questionNumber]["title"]);
+                $("#type").val(questionGroup[questionNumber]["type"]);
+                $("#choiceA").html(questionGroup[questionNumber]["choiceA"]);
+                $("#choiceB").html(questionGroup[questionNumber]["choiceB"]);
+            }
+            let makeResult = ()=>{
+                $(".question").hide();
+
+                var mbti = "";
+                ($("#EI").val() < 2) ? mbti += "I" : mbti += "E";
+                ($("#SN").val() < 2) ? mbti += "N" : mbti += "S";
+                ($("#TF").val() < 2) ? mbti += "F" : mbti += "T";
+                ($("#JP").val() < 2) ? mbti += "P" : mbti += "J";
+
+                paintResult(mbti);
+            }
+            let paintResult = (mbti)=>{
+                $("#pic").attr('src', resultGroup[mbti]["img"]);
+                $("#name").html("<mark style=\"background-color: rgba(255, 203, 203, 0.8);\"><b>"+resultGroup[mbti]["name"]+"</b></mark>");
+                $("#explain").html(resultGroup[mbti]["explain"]);
+                $("#explainMore").html(resultGroup[mbti]["explainMore"]);
+                $("#preImage").attr('content', "https://whatifibecamecat.netlify.app/"+resultGroup[mbti]["img"]);
+                $(".result").show();
+            }
         </script>
+
+
         <!-- Go to www.addthis.com/dashboard to customize your tools -->
         <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60a9ee5b97d34dd0"></script>
     </body>
