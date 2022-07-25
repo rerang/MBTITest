@@ -1,12 +1,25 @@
 body{
     font-family: 'Gamja Flower', cursive;
+    font-size: 62.5%;
 }
 h1{
     text-align:center;
     border-bottom: 10px rgb(253, 180, 180) double;
 }
+.mainArea{
+    margin: 0 auto;
+    width: calc(800px + 8%);
+    padding: 0 2rem;
+}
 .title{
-    font-size: 100px;
+    font-size: 3rem;
+    margin: 3rem;
+}
+.mainImgArea{
+    margin: 2rem auto;
+
+}
+.mainImg{
 }
 article{
     display: flex;
@@ -17,27 +30,94 @@ article{
     height: 300px;
     margin: 0 auto;
 }
-
-.question{
+.questionArea{
+    margin: 3rem 0;
+}
+.progress{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    column-gap: 1rem;
+}
+.progress_num{
+    font-size: 2rem;
+}
+.progress_bar_Area{
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    border: 2px dotted rgb(253, 180, 180);
+}
+.progress_bar{
+    background-color: rgb(253, 180, 180);
+    height: 100%;
+    overflow: hidden;
+}
+.questionArea{
     display: none;
 
 }
+.question{
+    font-size: 2rem;
+    margin: 3rem auto;
+}
+
+
+
 .result{
     display: none;
 
 }
+.resultTitleArea{
+    border-bottom: 10px rgb(253, 180, 180) double;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.resultDesc{
+    text-align: center;
+    border-bottom: 3px solid rgb(253, 180, 180);
+    padding-bottom: 5px;
+}
+.resultName{
+    font-size: 3rem;
+    margin: 2rem auto;
+}
+.resultExplain{
+    font-size: 2rem;
+}
+.resultMoreExplain{
+    padding: 0 3rem;
+    margin: 2rem auto;
+    text-align: left;
+    font-size: 1.5rem;
+}
+.resultExplainArea{
+    padding: 1rem 2rem;
+    line-height: 50px;
+    border: 3px rgb(253, 180, 180) dotted;
+    text-align: center;
+    margin: 2rem auto;
+}
+.resultImg{
+    margin: 2rem auto;
+}
+
 #pic{
     width: 300px;
     height: 300px;
-    margin: 0 auto;
 }
 .progress-bar{
     background: rgb(253, 180, 180);
 }
 .button{
     margin: 5%;
+    height: 4rem;
     background-color: rgb(255, 203, 203);
     color: black;
+    font-family: 'Gamja Flower', cursive;
+    font-size: 1.5rem;
+    border-radius: 5px;
     border: 2px rgb(255, 203, 203) solid;
 }
 .button:hover{
@@ -50,11 +130,6 @@ article{
     color: black;
 }
 
-#explainMore{
-    padding: 20px;
-    line-height: 50px;
-    border: 3px rgb(253, 180, 180) dotted;
-}
 
 .share{
     margin: 0 auto;
