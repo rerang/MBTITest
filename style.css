@@ -8,7 +8,7 @@ h1{
 }
 .mainArea{
     margin: 0 auto;
-    width: calc(800px + 8%);
+    width: calc(600px + 8%);
     padding: 0 2rem;
 }
 .title{
@@ -87,6 +87,7 @@ article{
     font-size: 2rem;
 }
 .resultMoreExplain{
+    font-family: 'Poor Story';
     padding: 0 3rem;
     margin: 2rem auto;
     text-align: left;
