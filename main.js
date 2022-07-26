@@ -11,7 +11,7 @@ const questionGroup = {
     9 : { "title" : "Q9. 지인이 지갑을 잃어버렸다. 이때 나는...", "type" : "TF", "choiceA" : "<big><b>카드</b></big> 있으면 <big><b>일단 정지</b></big>시키고, 마지막으로 본 곳부터 가보자.", "choiceB" : "괜찮아? <big><b>금방 찾을 수 있을거야.</b></big> 나도 같이 찾아볼게." },
     10 : { "title" : "Q10. 여행 가기전 나는...?", "type" : "JP", "choiceA" : "교통편, 숙소, 짐, 동선까지!!! <big><b>모든게 완벽해야해!</b></big>", "choiceB" : "잘 곳, 왕복 교통편만! 나머지는 <big><b>그때 보고~</b></big> 끝!" },
     11 : { "title" : "Q11. 스트레스를 받으면 나는...", "type" : "EI", "choiceA" : "<big><b>친구와 대화</big></b>하며 스트레스 빠세!!", "choiceB" : "<big><b>쉬는게 제일!</big></b> 굴러다니면서 힐링!" },
-    12 : { "title" : "Q12. 마라톤을 하는데, 얼마남지 않은 결승선!! 그런데 너무 힘들다ㅠ", "type" : "JP", "choiceA" : "마침표를 찍어야만 해! <big><b>천천히라도 끝까지</b></big> 하자!", "choiceB" : "<big><b>참가에 의의</b></big>를 두고, 다음에 또 참여하자!" }
+    12 : { "title" : "Q12. 마라톤 중, 얼마남지 않은 결승선!! 그런데 너무 힘들다ㅠ", "type" : "JP", "choiceA" : "마침표를 찍어야만 해! <big><b>천천히라도 끝까지</b></big> 하자!", "choiceB" : "<big><b>참가에 의의</b></big>를 두고, 다음에 또 참여하자!" }
 }
 
 const resultGroup = {
